@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+
+public class whatsnew extends Activity {
+
+	private ViewPager viewpagers;
+	private ViewPagerAdapter vpdapter;
+	private List<View> views;	
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.whatsnew);
+		
+		
+		anew();
+		
+	}
+  
+  public void anew(){
+		LayoutInflater inflater = LayoutInflater.from(this);
+		
+		views = new ArrayList<View>();
+		views.add(inflater.inflate(R.layout.a, null));
+		views.add(inflater.inflate(R.layout.b, null));
+		views.add(inflater.inflate(R.layout.c, null));
+		
+		
+		ViewPagerAdapter vpdapter = new ViewPagerAdapter(views, this); 
+		viewpagers = (ViewPager)findViewById(R.id.whatsnewviewpager);
+		viewpagers.setAdapter(vpdapter);
+		
+	}
+}
