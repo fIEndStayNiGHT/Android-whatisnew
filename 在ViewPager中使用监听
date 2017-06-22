@@ -1,0 +1,9 @@
+android:OnClick = "button";
+
+
+
+public void button(){
+
+method;
+
+}
