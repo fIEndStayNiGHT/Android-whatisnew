@@ -1,0 +1,100 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.adapter.WhatsnewAdapter;
+import com.example.beat.R;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class Whatsnew extends Activity implements OnPageChangeListener{
+
+	private ViewPager viewpagers;
+	private WhatsnewAdapter vpdapter;
+	private List<View> views;
+	private ImageView dots[];
+	private int ids[] = {R.id.imageView1,R.id.imageView2,R.id.imageView3};
+	private TextView text1;
+	private int a;
+	private String abc;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.whatsnew);
+		//intidots();
+		dots =new ImageView[3];
+		dots[0]=(ImageView)findViewById(R.id.imageView1);
+		dots[1]=(ImageView)findViewById(R.id.imageView2);
+		dots[2]=(ImageView)findViewById(R.id.imageView3);
+		text1=(TextView)findViewById(R.id.text1);
+		
+		abc=""+a;
+		text1.setText(views());
+		//Toast.makeText(this, abc,Toast.LENGTH_SHORT).show();
+		anew();
+		
+	}
+  
+  public void anew(){
+		LayoutInflater inflater = LayoutInflater.from(this);
+		
+		views = new ArrayList<View>();
+		views.add(inflater.inflate(R.layout.a, null));
+		views.add(inflater.inflate(R.layout.b, null));
+		views.add(inflater.inflate(R.layout.c, null));
+		
+		
+		WhatsnewAdapter vpdapter = new WhatsnewAdapter(views, this); 
+		viewpagers = (ViewPager)findViewById(R.id.wahtsnew);
+		viewpagers.setAdapter(vpdapter);
+		viewpagers.setOnPageChangeListener(this);
+		
+	}
+
+
+  		private int views(){
+  			return views.size();
+  		}
+  
+  
+  		
+//  		private void intidots(){
+//  			dots =new ImageView[views.size()];
+// 			for(int i=0;i<views.size();i++){
+//  			dots[i]=(ImageView)findViewById(ids[i]);	
+//  			}
+//  		}
+
+		@Override
+		public void onPageScrollStateChanged(int arg0) {//huadongzhuangtaibeigaibiandiaoyong
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onPageScrolled(int arg0, float arg1, int arg2) {//yemianbeihuadongshidiaoyong
+			// TODO Auto-generated method stub
+			
+	}
+
+		@Override
+		public void onPageSelected(int arg0) {//yemianbeixuanzhongshidiaoyong		
+  			for(int i=0;i<ids.length;i++){
+				if(arg0==i){
+					dots[i].setImageResource(R.drawable.select);
+				}else{
+					dots[i].setImageResource(R.drawable.defalut);
+				}
+			}
+			
+			
+	}
+}
